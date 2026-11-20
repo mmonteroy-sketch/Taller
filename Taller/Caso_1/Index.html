@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso 1 - Simulador de Factura de Ventas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background-color: #f4f4f9; }
+        .contenedor { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e50; text-align: center; }
+        .grupo-form { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        select, input, button { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { background-color: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        button:hover { background-color: #219150; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #2c3e50; color: white; }
+        .resumen { margin-top: 20px; padding: 15px; background: #ecf0f1; border-radius: 5px; }
+        .error { color: red; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+    <h2>Tienda de Abarrotes - Facturación</h2>
+    
+    <!-- Selección de producto y cantidad -->
+    <div class="grupo-form">
+        <label for="selectProducto">Seleccione un producto:</label>
+        <select id="selectProducto">
+            <option value="Leche|1.00">Leche - $1.00</option>
+            <option value="Arroz|1.80">Arroz - $1.80</option>
+            <option value="Aceite|3.50">Aceite - $3.50</option>
+            <option value="Azúcar|1.25">Azúcar - $1.25</option>
+            <option value="Atún|1.50">Atún - $1.50</option>
+        </select>
+    </div>
+
+    <div class="grupo-form">
+        <label for="inputCantidad">Cantidad:</label>
+        <input type="number" id="inputCantidad" min="1" placeholder="Ej. 2">
+    </div>
+
+    <button onclick="agregarProducto()">Agregar a la factura</button>
+    <p id="mensajeError" class="error"></p>
+
+    <!-- Tabla de productos agregados -->
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cant.</th>
+                <th>Precio Unit.</th>
+                <th>Total Item</th>
+            </tr>
+        </thead>
+        <tbody id="tablaDetalle"></tbody>
+    </table>
+
+    <!-- Sección de resultados -->
+    <div class="resumen" id="seccionResultados">
+        <p><strong>Subtotal:</strong> $0.00</p>
+        <p><strong>IVA (15%):</strong> $0.00</p>
+        <p><strong>Descuento (5% si subtotal > $20):</strong> $0.00</p>
+        <h3>Total a pagar: $0.00</h3>
+        <p><small>Productos distintos comprados: 0 | Producto más caro en lista: N/A</small></p>
+    </div>
+</div>
+
+<!-- Enlace al archivo JavaScript -->
+<script src="app.js"></script>
+</body>
+</html> 
