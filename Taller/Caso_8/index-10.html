@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Finanzas Seguras | Turnos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="contenedor">
+
+        <header class="encabezado">
+            <p class="etiqueta">Atención al cliente</p>
+            <h1>Banco Finanzas Seguras</h1>
+            <p class="subtitulo">Sistema diario de asignación y seguimiento de turnos</p>
+        </header>
+
+        <main class="paneles">
+
+            <!-- Registro de turnos -->
+            <section class="tarjeta tarjeta-registro">
+                <div class="tarjeta-cabecera">
+                    <h2>Registrar turno</h2>
+                </div>
+
+                <table class="tabla tabla-formulario">
+                    <tbody>
+                        <tr>
+                            <th scope="row"><label for="campoCliente">Nombre del cliente</label></th>
+                            <td>
+                                <input
+                                    class="campo"
+                                    id="campoCliente"
+                                    type="text"
+                                    placeholder="Nombre y apellido"
+                                    maxlength="60"
+                                    autocomplete="off"
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="celda-botones">
+                                <div class="botones">
+                                    <button class="boton boton-principal" id="botonAsignar" type="button">
+                                        Asignar turno
+                                    </button>
+                                    <button class="boton boton-secundario" id="botonAtender" type="button">
+                                        Atender siguiente
+                                    </button>
+                                    <button class="boton boton-secundario" id="botonEstadisticas" type="button">
+                                        Ver estadísticas
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="aviso" id="avisoSistema" role="status" aria-live="polite"></p>
+            </section>
+
+            <!-- Turnos pendientes -->
+            <section class="tarjeta tarjeta-turnos">
+                <div class="tarjeta-cabecera">
+                    <h2>Turnos pendientes</h2>
+                    <span class="pista">Orden de llegada</span>
+                </div>
+
+                <div class="tabla-scroll">
+                    <table class="tabla tabla-turnos">
+                        <thead>
+                            <tr>
+                                <th scope="col">Turno</th>
+                                <th scope="col">Cliente</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaTurnos"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Estadísticas del día -->
+            <section class="tarjeta tarjeta-estadisticas">
+                <div class="tarjeta-cabecera">
+                    <h2>Estadísticas del día</h2>
+                    <span class="pista">Resumen</span>
+                </div>
+
+                <table class="tabla tabla-datos">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Turnos totales</th>
+                            <td id="datoTotal">0</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Atendidos</th>
+                            <td id="datoAtendidos">0</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Pendientes</th>
+                            <td id="datoPendientes">0</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Porcentaje atendido</th>
+                            <td id="datoPorcentaje">0%</td>
+                        </tr>
+                        <tr class="fila-destacada">
+                            <th scope="row">En atención</th>
+                            <td id="datoEnAtencion">—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+
+        <footer class="pie">
+            <p>Los turnos se reinician al recargar la página.</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

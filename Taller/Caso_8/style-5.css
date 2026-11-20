@@ -1,0 +1,342 @@
+:root {
+    --fondo: #f4f6f8;
+    --superficie: #ffffff;
+    --texto: #1c2430;
+    --texto-suave: #667085;
+    --borde: #e4e7ec;
+    --acento: #2563eb;
+    --acento-oscuro: #1d4ed8;
+    --acento-suave: #eff4ff;
+    --exito: #067647;
+    --error: #b42318;
+    --radio: 14px;
+    --sombra: 0 1px 2px rgba(16, 24, 40, 0.04), 0 10px 28px rgba(16, 24, 40, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.5;
+    color: var(--texto);
+    background: var(--fondo);
+}
+
+.contenedor {
+    width: min(1040px, 100% - 32px);
+    margin: 0 auto;
+    padding: 40px 0 48px;
+}
+
+/* Encabezado */
+.encabezado {
+    margin-bottom: 24px;
+}
+
+.etiqueta {
+    margin: 0 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--acento);
+}
+
+.encabezado h1 {
+    margin: 0;
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+}
+
+.subtitulo {
+    margin: 6px 0 0;
+    font-size: 15px;
+    color: var(--texto-suave);
+}
+
+/* Distribución de paneles */
+.paneles {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+        "registro turnos"
+        "estadisticas turnos";
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+}
+
+.tarjeta {
+    padding: 22px;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+.tarjeta-registro {
+    grid-area: registro;
+}
+
+.tarjeta-turnos {
+    grid-area: turnos;
+}
+
+.tarjeta-estadisticas {
+    grid-area: estadisticas;
+}
+
+.tarjeta-cabecera {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.tarjeta-cabecera h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.pista {
+    font-size: 12px;
+    color: var(--texto-suave);
+}
+
+/* Tablas */
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.tabla th,
+.tabla td {
+    padding: 10px 0;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.tabla-formulario {
+    table-layout: fixed;
+}
+
+.tabla-formulario th {
+    width: 42%;
+    padding-right: 12px;
+    font-weight: 500;
+    color: var(--texto-suave);
+}
+
+.tabla-formulario .celda-botones {
+    padding-top: 18px;
+}
+
+.tabla-turnos thead th {
+    padding: 0 0 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    border-bottom: 1px solid var(--borde);
+}
+
+.tabla-turnos tbody td {
+    border-bottom: 1px solid var(--borde);
+}
+
+.tabla-turnos tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.tabla-turnos tbody tr:hover td {
+    background: #fafbfc;
+}
+
+.tabla-turnos td:first-child {
+    width: 92px;
+    font-weight: 600;
+    color: var(--acento);
+    font-variant-numeric: tabular-nums;
+}
+
+.tabla-turnos td.celda-vacia {
+    padding: 28px 0;
+    text-align: center;
+    font-weight: 400;
+    color: var(--texto-suave);
+}
+
+.tabla-scroll {
+    overflow-x: auto;
+}
+
+.tabla-datos th {
+    font-weight: 500;
+    color: var(--texto-suave);
+}
+
+.tabla-datos td {
+    text-align: right;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.tabla-datos tr + tr th,
+.tabla-datos tr + tr td {
+    border-top: 1px solid var(--borde);
+}
+
+.tabla-datos .fila-destacada th,
+.tabla-datos .fila-destacada td {
+    color: var(--acento);
+}
+
+/* Campo de texto */
+.campo {
+    width: 100%;
+    padding: 10px 12px;
+    font: inherit;
+    color: inherit;
+    background: #fcfcfd;
+    border: 1px solid var(--borde);
+    border-radius: 9px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.campo::placeholder {
+    color: #98a2b3;
+}
+
+.campo:focus {
+    outline: none;
+    background: var(--superficie);
+    border-color: var(--acento);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Botones */
+.botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.boton {
+    padding: 9px 14px;
+    font: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.boton-principal {
+    color: #ffffff;
+    background: var(--acento);
+}
+
+.boton-principal:hover {
+    background: var(--acento-oscuro);
+}
+
+.boton-secundario {
+    color: var(--texto);
+    background: var(--superficie);
+    border-color: var(--borde);
+}
+
+.boton-secundario:hover {
+    color: var(--acento);
+    background: var(--acento-suave);
+    border-color: #c7d7fe;
+}
+
+.boton:focus-visible {
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+}
+
+/* Mensajes */
+.aviso {
+    min-height: 20px;
+    margin: 14px 0 0;
+    font-size: 13px;
+    color: var(--texto-suave);
+}
+
+.aviso-error {
+    color: var(--error);
+}
+
+.aviso-ok {
+    color: var(--exito);
+}
+
+/* Pie */
+.pie {
+    margin-top: 24px;
+    font-size: 12.5px;
+    text-align: center;
+    color: var(--texto-suave);
+}
+
+.pie p {
+    margin: 0;
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 780px) {
+    .contenedor {
+        width: min(100% - 24px, 560px);
+        padding: 28px 0 40px;
+    }
+
+    .paneles {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "registro"
+            "turnos"
+            "estadisticas";
+        grid-template-rows: auto;
+        gap: 16px;
+    }
+
+    .tarjeta {
+        padding: 18px;
+    }
+
+    .botones {
+        flex-direction: column;
+    }
+
+    .boton {
+        width: 100%;
+    }
+}
+
+@media (max-width: 420px) {
+    .tarjeta {
+        padding: 16px;
+    }
+
+    .tabla-formulario th {
+        width: 40%;
+        padding-right: 8px;
+        font-size: 13px;
+    }
+
+    .campo {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+}
