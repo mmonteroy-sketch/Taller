@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Turnos Clínica</title>
+</head>
+<body>
+
+    <table border="1" cellpadding="8" cellspacing="0" align="center">
+
+        <tr>
+            <th colspan="3">
+                SISTEMA DE TURNOS DE UNA CLÍNICA
+            </th>
+        </tr>
+
+        <tr>
+            <td>Nombre del paciente:</td>
+            <td colspan="2">
+                <input type="text" id="nombre">
+            </td>
+        </tr>
+
+        <tr>
+            <td>Prioridad:</td>
+            <td colspan="2">
+                <select id="prioridad">
+                    <option value="Alta">Alta</option>
+                    <option value="Media">Media</option>
+                    <option value="Baja">Baja</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3" align="center">
+                <button onclick="registrar()">
+                    Registrar Paciente
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <th colspan="3">TURNOS PENDIENTES</th>
+        </tr>
+
+        <tr>
+            <th>N°</th>
+            <th>Nombre del Paciente</th>
+            <th>Prioridad</th>
+        </tr>
+
+        <tbody id="tabla">
+        </tbody>
+
+        <tr>
+            <td colspan="3" align="center">
+                <button onclick="atender()">
+                    Atender Paciente
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <th colspan="3">ATENCIÓN DEL MÉDICO</th>
+        </tr>
+
+        <tr>
+            <td colspan="3" align="center" id="atendido">
+                Paciente atendido: Ninguno
+            </td>
+        </tr>
+
+    </table>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+ 
