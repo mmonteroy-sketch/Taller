@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso 6: Registro de Calificaciones</title>
+    <!-- Tipografía moderna Poppins desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #faf8fc;
+            color: #4a4458;
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #5b4b8a;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        h2 {
+            color: #6b5b95;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 0;
+        }
+        .tarjeta {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(107, 91, 149, 0.08);
+            margin-bottom: 24px;
+            border: 1px solid #f0ebf8;
+        }
+        .formulario {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            color: #5b4b8a;
+        }
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 12px;
+            border: 1.5px solid #dcd3eb;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: #4a4458;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus {
+            border-color: #9b89b3;
+        }
+
+        /* Botones normales (tamaño natural, estilo limpio) */
+        .botones {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-start;
+        }
+        button {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        #btnRegistrar {
+            background-color: #7c69ef;
+            color: #ffffff;
+        }
+        #btnRegistrar:hover {
+            background-color: #6552d6;
+        }
+        .btn-estadisticas {
+            background-color: #e9e4f5;
+            color: #5b4b8a;
+        }
+        .btn-estadisticas:hover {
+            background-color: #dcd3eb;
+        }
+
+        /* Tabla en colores pasteles */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e6dff2;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #f0ebf8;
+        }
+        th {
+            background-color: #e4d9f7; /* Lila pastel */
+            color: #4b3869;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #fdfbff; /* Blanco lavanda muy suave */
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f6f2fc; /* Lavanda pastel claro */
+        }
+        tbody tr:hover {
+            background-color: #ede6f9;
+        }
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Estados Aprobado / Reprobado en tonos pastel */
+        .aprobado {
+            color: #2b7a5b;
+            background-color: #d8f3dc;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-block;
+        }
+        .reprobado {
+            color: #a63a50;
+            background-color: #ffe5ec;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-block;
+        }
+
+        /* Alertas suaves */
+        .mensaje {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            font-weight: 500;
+            font-size: 0.92rem;
+            display: none;
+        }
+        .exito {
+            background-color: #d8f3dc;
+            color: #2b7a5b;
+            border: 1px solid #b7e4c7;
+        }
+        .error {
+            background-color: #ffe5ec;
+            color: #a63a50;
+            border: 1px solid #ffc2d1;
+        }
+
+        /* Panel de estadísticas en tonos pastel */
+        .panel-estadisticas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .caja-dato {
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .caja-dato:nth-child(1) {
+            background-color: #e2ece9; /* Verde menta pastel */
+            color: #355c53;
+        }
+        .caja-dato:nth-child(2) {
+            background-color: #fde2e4; /* Rosa pastel */
+            color: #7d444b;
+        }
+        .caja-dato:nth-child(3) {
+            background-color: #dfe7fd; /* Azul cielo pastel */
+            color: #3d4f7c;
+        }
+        .dato-destacado {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Registro de Calificaciones con Estadísticas</h1>
+
+    <!-- Alerta de validación o confirmación -->
+    <div id="mensajeAlerta" class="mensaje"></div>
+
+    <!-- Sección 1: Registro de estudiantes -->
+    <div class="tarjeta">
+        <h2>Ingresar Calificación</h2>
+        <div class="formulario">
+            <div>
+                <label for="nombreEstudiante">Nombre del Estudiante</label>
+                <input type="text" id="nombreEstudiante" placeholder="Ej. Ana">
+            </div>
+            <div>
+                <label for="notaEstudiante">Nota Obtenida (0 - 10)</label>
+                <input type="number" id="notaEstudiante" min="0" max="10" step="0.1" placeholder="Ej. 8.5">
+            </div>
+        </div>
+        <div class="botones">
+            <button id="btnRegistrar">Registrar Calificación</button>
+            <button id="btnCalcular" class="btn-estadisticas">Calcular Estadísticas</button>
+        </div>
+    </div>
+
+    <!-- Sección 2: Tabla de calificaciones y resultados estadísticos -->
+    <div class="tarjeta">
+        <h2>Listado de Estudiantes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Estudiante</th>
+                    <th>Nota</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="tablaNotas">
+                <!-- Se llena con JavaScript -->
+            </tbody>
+        </table>
+
+        <!-- Resultados estadísticos -->
+        <div class="panel-estadisticas">
+            <div class="caja-dato">
+                <div>Promedio General</div>
+                <div id="resPromedio" class="dato-destacado">-</div>
+            </div>
+            <div class="caja-dato">
+                <div>Nota Más Alta</div>
+                <div id="resNotaAlta" class="dato-destacado">-</div>
+            </div>
+            <div class="caja-dato">
+                <div>Porcentaje de Aprobados</div>
+                <div id="resAprobados" class="dato-destacado">-</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./src/app.js"></script>
+</body>
+</html>
