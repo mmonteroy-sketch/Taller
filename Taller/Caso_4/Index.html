@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Control de Pedidos e Inventario</title>
+</head>
+<body>
+
+    <table border="1" cellpadding="8" cellspacing="0" align="center">
+
+        <tr>
+            <th colspan="3">
+                CONTROL DE PEDIDOS E INVENTARIO
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">REGISTRAR PEDIDO</th>
+        </tr>
+
+        <tr>
+            <td>Nombre del plato:</td>
+            <td colspan="2">
+                <input type="text" id="plato">
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3" align="center">
+                <button onclick="registrarPedido()">
+                    Registrar Pedido
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <th colspan="3">INVENTARIO DISPONIBLE</th>
+        </tr>
+
+        <tr>
+            <th>N°</th>
+            <th>Nombre del Plato</th>
+            <th>Stock</th>
+        </tr>
+
+        <tbody id="inventario">
+        </tbody>
+
+        <tr>
+            <th colspan="3">PEDIDOS REALIZADOS</th>
+        </tr>
+
+        <tr>
+            <th>N°</th>
+            <th colspan="2">Nombre del Plato</th>
+        </tr>
+
+        <tbody id="pedidos">
+        </tbody>
+
+        <tr>
+            <th colspan="3">PLATOS AGOTADOS</th>
+        </tr>
+
+        <tr>
+            <th>N°</th>
+            <th colspan="2">Nombre del Plato</th>
+        </tr>
+
+        <tbody id="agotados">
+        </tbody>
+
+        <tr>
+            <td colspan="3" align="center">
+                <p id="mensaje">Estado: Esperando pedidos</p>
+            </td>
+        </tr>
+
+    </table>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
