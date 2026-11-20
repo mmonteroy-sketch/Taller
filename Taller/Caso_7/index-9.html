@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de ventas | Librería Académica</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="contenedor">
+        <header class="cabecera">
+            <div>
+                <p class="marca">Librería Académica</p>
+                <h1>Control de ventas</h1>
+            </div>
+            <p class="fecha">Ventas del día</p>
+        </header>
+
+        <main class="tablero">
+            <!-- Agregar producto -->
+            <section class="panel panel-registro">
+                <h2>Agregar a la venta</h2>
+
+                <table class="tabla tabla-formulario">
+                    <tbody>
+                        <tr>
+                            <th scope="row"><label for="nombre">Producto</label></th>
+                            <td><input type="text" id="nombre" placeholder="Ej: Calculadora"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="precio">Precio unitario ($)</label></th>
+                            <td><input type="number" id="precio" step="0.01" min="0.01" placeholder="Ej: 8.50"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="acciones">
+                    <button type="button" id="btnAgregar">Agregar producto</button>
+                    <button type="button" id="btnFactura" class="secundario">Calcular factura</button>
+                    <button type="button" id="btnLimpiar" class="secundario">Nueva venta</button>
+                </div>
+
+                <p id="mensaje" class="mensaje" role="status"></p>
+            </section>
+
+            <!-- Detalle de productos -->
+            <section class="panel panel-productos">
+                <h2>Detalle de productos</h2>
+
+                <table class="tabla">
+                    <thead>
+                        <tr>
+                            <th class="col-numero">N.º</th>
+                            <th>Producto</th>
+                            <th class="col-precio">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaProductos"></tbody>
+                </table>
+            </section>
+
+            <!-- Resumen de factura -->
+            <section class="panel panel-factura">
+                <h2>Resumen de factura</h2>
+
+                <table class="tabla tabla-resumen">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Productos</th>
+                            <td id="cantidad">0</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Subtotal</th>
+                            <td id="subtotal">$0.00</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">IVA (15%)</th>
+                            <td id="iva">$0.00</td>
+                        </tr>
+                        <tr class="fila-total">
+                            <th scope="row">Total a pagar</th>
+                            <td id="total">$0.00</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Más costoso</th>
+                            <td id="masCaro">—</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Promedio</th>
+                            <td id="promedio">$0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
