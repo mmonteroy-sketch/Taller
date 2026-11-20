@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Parqueadero</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #1e3a8a;
+        }
+        .contenedor {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .tarjeta {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .campo {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #152c6b;
+        }
+        .btn-salida {
+            background-color: #047857;
+        }
+        .btn-salida:hover {
+            background-color: #065f46;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #1e3a8a;
+            color: white;
+        }
+        .mensaje {
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: none;
+        }
+        .exito {
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #34d399;
+        }
+        .error {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #f87171;
+        }
+        .estadisticas {
+            display: flex;
+            justify-content: space-around;
+            background: #e0e7ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Control de Parqueadero - Cobro por Hora ($0.75/h)</h1>
+
+    <!-- Área para mostrar alertas o comprobantes de cobro -->
+    <div id="mensajeAlerta" class="mensaje"></div>
+
+    <div class="contenedor">
+        <!-- Sección 1: Ingreso de Vehículos -->
+        <div class="tarjeta">
+            <h2>1. Registrar Entrada</h2>
+            <div class="campo">
+                <label for="placaEntrada">Placa del Auto (Ej. ABC123):</label>
+                <input type="text" id="placaEntrada" placeholder="Ingrese la placa">
+            </div>
+            <div class="campo">
+                <label for="horaEntrada">Hora de Entrada (0 - 23):</label>
+                <input type="number" id="horaEntrada" min="0" max="23" placeholder="Ej. 9">
+            </div>
+            <button id="btnIngresar">Registrar Ingreso</button>
+        </div>
+
+        <!-- Sección 2: Salida y Cobro -->
+        <div class="tarjeta">
+            <h2>2. Registrar Salida y Cobrar</h2>
+            <div class="campo">
+                <label for="placaSalida">Placa del Auto a Retirar:</label>
+                <input type="text" id="placaSalida" placeholder="Ingrese la placa">
+            </div>
+            <div class="campo">
+                <label for="horaSalida">Hora de Salida (1 - 24):</label>
+                <input type="number" id="horaSalida" min="1" max="24" placeholder="Ej. 12">
+            </div>
+            <button id="btnRetirar" class="btn-salida">Calcular Cobro y Retirar</button>
+        </div>
+    </div>
+
+    <!-- Sección 3: Resultados y Estadísticas -->
+    <div class="tarjeta">
+        <h2>Autos Actualmente Estacionados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Placa del Vehículo</th>
+                    <th>Hora de Entrada</th>
+                </tr>
+            </thead>
+            <tbody id="tablaVehiculos">
+            </tbody>
+        </table>
+
+        <div class="estadisticas">
+            <div><strong>Autos Estacionados:</strong> <span id="totalAutos">0</span></div>
+            <div><strong>Autos Atendidos (Salidas):</strong> <span id="autosAtendidos">0</span></div>
+            <div><strong>Total Cobrado en el Día:</strong> $<span id="totalRecaudado">0.00</span></div>
+        </div>
+    </div>
+
+    <script src="./src/app.js"></script>
+</body>
+</html> 
